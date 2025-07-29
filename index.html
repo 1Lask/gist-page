@@ -2,37 +2,25 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Leitor de Texto via GitHub Pages</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #ffffff;
-      font-family: monospace;
-      padding: 20px;
-    }
-    #conteudo {
-      white-space: pre-wrap;
-      border: 1px solid #444;
-      padding: 10px;
-      background-color: #1e1e1e;
-    }
-  </style>
+  <title>By Lask</title>
 </head>
 <body>
-  <h2>Conteúdo de testelask.txt</h2>
-  <div id="conteudo">Carregando...</div>
+  <h1>Chave genérica</h1>
+  <pre id="conteudoTxt">Carregando</pre>
 
   <script>
-    fetch("https://1lask.github.io/Depots/testelask.txt")
+    fetch('testelask.txt')
       .then(response => {
-        if (!response.ok) throw new Error("Erro ao carregar o arquivo.");
+        if (!response.ok) {
+          throw new Error('Erro ao carregar o arquivo');
+        }
         return response.text();
       })
       .then(texto => {
-        document.getElementById("conteudo").textContent = texto;
+        document.getElementById('conteudoTxt').textContent = texto;
       })
       .catch(erro => {
-        document.getElementById("conteudo").textContent = "Erro: " + erro.message;
+        document.getElementById('conteudoTxt').textContent = 'Erro: ' + erro.message;
       });
   </script>
 </body>
