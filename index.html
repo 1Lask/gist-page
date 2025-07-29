@@ -5,23 +5,48 @@
   <title>By Lask</title>
 </head>
 <body>
-  <h1>Chave genérica</h1>
-  <pre id="conteudoTxt">Carregando</pre>
+  <h1>By Lask</h1>
+
+  <h2>BaseMU</h2>
+  <pre id="conteudo1">Carregando...</pre>
+
+  <h2>Hashs</h2>
+  <pre id="conteudo2">Carregando...</pre>
 
   <script>
-    fetch('testelask.txt')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro ao carregar o arquivo');
-        }
-        return response.text();
-      })
-      .then(texto => {
-        document.getElementById('conteudoTxt').textContent = texto;
-      })
-      .catch(erro => {
-        document.getElementById('conteudoTxt').textContent = 'Erro: ' + erro.message;
-      });
+    let ultimoTexto1 = '';
+    let ultimoTexto2 = '';
+
+    function atualizarArquivo(idElemento, arquivo, ultimoTexto) {
+      fetch(arquivo)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erro ao carregar ' + arquivo);
+          }
+          return response.text();
+        })
+        .then(texto => {
+          if (texto !== ultimoTexto) {
+            document.getElementById(idElemento).textContent = texto;
+            if (idElemento === 'conteudo1') ultimoTexto1 = texto;
+            if (idElemento === 'conteudo2') ultimoTexto2 = texto;
+          }
+        })
+        .catch(erro => {
+          document.getElementById(idElemento).textContent = 'Erro: ' + erro.message;
+        });
+    }
+
+    function atualizarTudo() {
+      atualizarArquivo('conteudo1', 'testelask.txt', ultimoTexto1);
+      atualizarArquivo('conteudo2', 'testebase.txt', ultimoTexto2);
+    }
+
+    // Atualiza ao abrir
+    atualizarTudo();
+
+    // Atualiza a cada 30 segundos
+    setInterval(atualizarTudo, 30000);
   </script>
 </body>
 </html>
