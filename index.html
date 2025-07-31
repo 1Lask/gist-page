@@ -2,51 +2,27 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>By Lask</title>
+  <title>Bloco de Notas</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: monospace;
+      padding: 20px;
+    }
+    #conteudo {
+      white-space: pre-wrap;
+      border: 1px solid #444;
+      padding: 10px;
+      background-color: #1e1e1e;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>By Lask</h1>
-
-  <h2>BaseMU</h2>
-  <pre id="conteudo1">Carregando...</pre>
-
-  <h2>Hashs</h2>
-  <pre id="conteudo2">Carregando...</pre>
-
-  <script>
-    let ultimoTexto1 = '';
-    let ultimoTexto2 = '';
-
-    function atualizarArquivo(idElemento, arquivo, ultimoTexto) {
-      fetch(arquivo)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Erro ao carregar ' + arquivo);
-          }
-          return response.text();
-        })
-        .then(texto => {
-          if (texto !== ultimoTexto) {
-            document.getElementById(idElemento).textContent = texto;
-            if (idElemento === 'conteudo1') ultimoTexto1 = texto;
-            if (idElemento === 'conteudo2') ultimoTexto2 = texto;
-          }
-        })
-        .catch(erro => {
-          document.getElementById(idElemento).textContent = 'Erro: ' + erro.message;
-        });
-    }
-
-    function atualizarTudo() {
-      atualizarArquivo('conteudo1', 'testelask.txt', ultimoTexto1);
-      atualizarArquivo('conteudo2', 'testebase.txt', ultimoTexto2);
-    }
-
-    // Atualiza ao abrir
-    atualizarTudo();
-
-    // Atualiza a cada 30 segundos
-    setInterval(atualizarTudo, 30000);
-  </script>
+  <h1>Bloco de Notas</h1>
+  <div id="conteudo">
+    AA000000000000000448:on
+  </div>
 </body>
 </html>
